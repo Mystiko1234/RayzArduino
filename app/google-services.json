@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "420632337849",
+    "project_id": "rayzarduino",
+    "storage_bucket": "rayzarduino.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420632337849:android:5be0024573969cde522a68",
+        "android_client_info": {
+          "package_name": "com.example.rayzarduino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv0WenXtlEiKVRItTGxrrvB8oqbCudejw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
