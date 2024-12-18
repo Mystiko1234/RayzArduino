@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var estadoTextView: TextView // TextView para mostrar el estado
-    private lateinit var imageView: ImageView // ImageView para mostrar la imagen del LED
+    private lateinit var estadoTextView: TextView
+    private lateinit var imageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         // Configuración de Firebase
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("sensor_data/status") // Ruta donde se encuentra el estado del LED
+        databaseReference = firebaseDatabase.getReference("sensor_data/status")
 
         // Inicializa los componentes de la interfaz
-        estadoTextView = findViewById(R.id.ledStatusText) // Asegúrate de tener un TextView con ese ID en tu layout
-        imageView = findViewById(R.id.imageView) // Asegúrate de tener un ImageView con ese ID en tu layout
+        estadoTextView = findViewById(R.id.ledStatusText)
+        imageView = findViewById(R.id.imageView)
 
-        // Ajustar padding para el diseño
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listenFirebaseChanges() {
-        // Escuchar los cambios en tiempo real en la base de datos (solo lee el estado del LED)
+        // Escuchar los cambios en tiempo real en la base de datos
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Accede a los datos de estado del LED
@@ -70,15 +69,15 @@ class MainActivity : AppCompatActivity() {
         when (estado) {
             "ON" -> {
                 estadoTextView.text = "La luz está ENCENDIDA"
-                imageView.setImageResource(R.drawable.encendida) // Cambiar imagen a encendida
+                imageView.setImageResource(R.drawable.encendida)
             }
             "OFF" -> {
                 estadoTextView.text = "La luz está APAGADA"
-                imageView.setImageResource(R.drawable.bombillaapagada) // Cambiar imagen a apagada
+                imageView.setImageResource(R.drawable.bombillaapagada)
             }
             else -> {
                 estadoTextView.text = "Estado desconocido"
-                imageView.setImageResource(R.drawable.bombillaapagada) // Imagen por defecto
+                imageView.setImageResource(R.drawable.bombillaapagada)
             }
         }
     }
